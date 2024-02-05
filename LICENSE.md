@@ -1,4 +1,4 @@
-Copyright (c) 2024 Adian Chien (https://github.com/QRXqrx)
+Copyright (c) 2024 Rui-Xiang Qian (https://github.com/QRXqrx)
 
 
 Attribution 4.0 International

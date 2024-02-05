@@ -5,5 +5,5 @@ This is the guideline repository for the TOSEM submission *DiPri: Distance-based
 ### Cross-language implementation of DiPri
 
 - AFL++-dipri (C/C++ implementation): https://github.com/QRXqrx/aflpp-dipri
-- Zest-dipri (Java implementation): https://github.com/YangDingNY/DiPri
+- Zest-dipri (Java implementation): https://github.com/YangDingNY/zest-dipri
 
