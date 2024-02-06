@@ -80,6 +80,8 @@ if __name__ == '__main__':
             target = fn1
             print(fuzzer, target)
             fuzzer_target_dir = os.path.join(fuzzer_dir, target, 'outs')
+            if not os.path.exists(fuzzer_target_dir):
+                continue
             llvm_cov_csvs = locate_llvm_cov_csvs(fuzzer_target_dir)
             fdf = read_and_concat_csvs(llvm_cov_csvs)
             # Turn into fuzzer df

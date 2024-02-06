@@ -123,6 +123,8 @@ if __name__ == '__main__':
                 continue
             target = fn1
             fuzzer_target_dir = os.path.join(fuzzer_dir, target, 'outs')
+            if not os.path.exists(fuzzer_target_dir):
+                continue
             # Traverse each campaign dir
             for fn2 in sorted(os.listdir(fuzzer_target_dir)):
                 if not fn2.startswith('out-'):
