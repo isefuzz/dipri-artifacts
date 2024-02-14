@@ -16,7 +16,7 @@ The structure of this repository is as follows:
 **Status**: According to the requirements of [TOSEM CFP](https://dl.acm.org/journal/tosem/replicated-computational-results), 
 there are three ACM badges for artifacts, namely _available, functional, and reusable_. Our artifacts aim to apply for
 all three badges. Note that we elaborate on the **INSTALL** and **REQUIREMENTS** parts of CFP in the section 3, i.e., 
-the reproduction with the `DOCKERFILE`.
+the reproduction with the `Dockfile`.
 
 ### 1 Cross-language implementation of DiPri
 
