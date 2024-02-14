@@ -92,7 +92,7 @@ Here we summarized the hardware requirements as follows:
 | # of Cores     | \>= 16       |
 | Memory         | \>= 32GB     |
 
-#### Installation of Docker-based Reproduction
+#### 3.2 Installation of Docker-based Reproduction
 
 The user may either download a ready-to-use image to conduct the docker-based reproduction or
 build the image manually with the Dockerfile and scripts provided in this repository.
