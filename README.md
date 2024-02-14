@@ -18,6 +18,9 @@ there are three ACM badges for artifacts, namely _available, functional, and reu
 all three badges. Note that we elaborate on the **INSTALL** and **REQUIREMENTS** parts of CFP in the section 3, i.e., 
 the reproduction with the `Dockfile`.
 
+**Papers**: This paper is a submission of the pre-registered model of [FUZZING Workshop](https://fuzzingworkshop.github.io/).
+Please check [FUZZING'23 registered paper](https://dl.acm.org/doi/10.1145/3605157.3605172).
+
 ### 1 Cross-language implementation of DiPri
 
 We have implemented DiPri in both C/C++ and Java respectively on top of AFL++ (version 4.06) and Zest 
