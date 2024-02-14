@@ -15,7 +15,8 @@ The structure of this repository is as follows:
 
 **Status**: According to the requirements of [TOSEM CFP](https://dl.acm.org/journal/tosem/replicated-computational-results), 
 there are three ACM badges for artifacts, namely _available, functional, and reusable_. Our artifacts aim to apply for
-all three badges.
+all three badges. Note that we elaborate on the **INSTALL** and **REQUIREMENTS** parts of CFP in the section 3, i.e., 
+the reproduction with the `DOCKERFILE`.
 
 ### 1 Cross-language implementation of DiPri
 
@@ -26,7 +27,7 @@ The links to the two implementations are as follows:
 - AFL++-dipri (C/C++ implementation): https://github.com/QRXqrx/aflpp-dipri
 - Zest-dipri (Java implementation): https://github.com/YangDingNY/zest-dipri
 
-### 2 Reproducing Experiments on FuzzBench and Magma
+### 2 Reproduction of Experiments on FuzzBench and Magma
 
 This repository includes scripts for integrating AFL++-dipri (under `AH` and `VH` configurations) into standard 
 benchmarks [FuzzBench](https://github.com/google/fuzzbench) and [Magma](https://github.com/HexHive/magma). 
@@ -53,10 +54,20 @@ For Magma integration:
 # Download Magma and checkout to the version we use.
 git clone https://github.com/HexHive/magma.git
 git -C ./fuzzbench checkout v1.2
-# Download and copy integration materials into the 'fuzzers /' folder.
+# Download and copy integration materials into the 'fuzzers/' folder.
 git clone https://github.com/QRXqrx/dipri-artifacts.git
 cp -r ./dipri-artifacts/magma-integration/* ./magma/fuzzers/
 # Enter './tools/captain/' and try building fuzzers with Magma targets
 cd ./tools/captain
 FUZZER=aflplusplus_dipri_ah TARGET=libpng./build.sh
 ```
+
+### 3 Docker-based Reproduction of Experiments on Manually Built Targets. 
+
+We provide docker environments for the reproduction of our experiments on fuzz targets real-world 
+projects. We first describe the software and hardware requirements and then give out exemplified shell 
+instructions.
+
+#### 3.1 Software and Hardware Requirements
+
+
