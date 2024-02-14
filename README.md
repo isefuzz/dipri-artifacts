@@ -70,4 +70,82 @@ instructions.
 
 #### 3.1 Software and Hardware Requirements
 
+The functionalities of DiPri can be implemented by standard libraries, so the software requirements of
+DiPri prototypes are same with its host fuzzers, i.e., AFL++ and Zest. Besides, the requirements of 
+running our scripts are put in `scripts/requirements.txt`. The contents are as follows:
+
+```text
+matplotlib==3.7.2
+numpy==1.25.2
+pandas==2.0.3
+scikit_learn==1.3.0
+tqdm==4.66.1
+venn==0.1.3
+```
+
+In our evaluation, we use three machines, i.e., two cloud servers and one workstation, to run our experiments.
+Here we summarized the hardware requirements as follows:
+
+| Infrastructure | Requirement  |
+|----------------|--------------|
+| OS             | Ubuntu 22.04 |
+| # of Cores     | \>= 16       |
+| Memory         | \>= 32GB     |
+
+#### Installation of Docker-based Reproduction
+
+The user may either download a ready-to-use image to conduct the docker-based reproduction or
+build the image manually with the Dockerfile and scripts provided in this repository.
+
+To download the off-the-shell image, you can run:
+
+```shell
+docker pull njuqrx/dipri:v1.1
+```
+
+To build the image manually, you can run:
+
+```shell
+# Download dipri artifacts .
+git clone https://github.com/QRXqrx/dipri-artifacts.git
+cd ./dipri-artifacts
+# Download subjects.
+mkdir subjects
+bash ./scripts/subject/download-subjects.sh ./subjects
+# Download AFL ++- DiPri.
+git clone https://github.com/QRXqrx/aflpp-dipri.git
+# Construct the docker image.
+docker build -t dipri .
+```
+
+After get the image, you can run a container and reproduce experiments inside it.
+Say we have built an image manually and want to fuzz `readelf`, which is one of our experimental subjects, 
+a possible sequence of instructions are as follows:
+
+```shell
+# Suppose we have built the image manually.
+docker run -it --privileged dipri
+
+# ##############################
+# Inside the docker container  #
+# ##############################
+
+# Setup experimental environments .
+cd /root/dipri
+source ./scripts/subject/setup/config/setup-dipri-AH.sh
+# Compiling targets. Please prepare folder for each fuzzer.
+mkdir -p ./data/dipri-AH
+bash  ./scripts/subject/inst/binutils.sh \
+      ./subjects/binutil-2.40 \
+      ./data/dipri-AH
+# Run targets to generate raw fuzz data.
+bash ./scripts/subject/fuzz/readelf.sh ./data/dipri-AH 82800 1 10
+# Extract edge coverage.
+python3 ./scripts/analysis/tosem/extract_data.py -f ./data
+# Analyze raw data to get tables and figures .
+bash ./scripts/analysis/tosem/run_rw_cov_analysis.sh ./data
+```
+
+
+
 
