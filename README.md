@@ -27,8 +27,8 @@ We have implemented DiPri in both C/C++ and Java respectively on top of AFL++ (v
 (version 2.0-SNAPSHOT). We put the source code of these two implementations in two separate repositories.
 The links to the two implementations are as follows:
 
-- AFL++-dipri (C/C++ implementation): https://github.com/QRXqrx/aflpp-dipri
-- Zest-dipri (Java implementation): https://github.com/YangDingNY/zest-dipri
+- AFL++-dipri (C/C++ implementation): https://github.com/isefuzz/aflpp-dipri
+- Zest-dipri (Java implementation): https://github.com/isefuzz/zest-dipri
 
 ### 2 Reproduction of Experiments on FuzzBench and Magma
 
@@ -110,13 +110,13 @@ To build the image manually, you can run:
 
 ```shell
 # Download dipri artifacts .
-git clone https://github.com/QRXqrx/dipri-artifacts.git
+git clone https://github.com/isefuzz/dipri-artifacts.git
 cd ./dipri-artifacts
 # Download subjects.
 mkdir subjects
 bash ./scripts/subject/download-subjects.sh ./subjects
 # Download AFL ++- DiPri.
-git clone https://github.com/QRXqrx/aflpp-dipri.git
+git clone https://github.com/isefuzz/aflpp-dipri.git
 # Construct the docker image.
 docker build -t dipri .
 ```
