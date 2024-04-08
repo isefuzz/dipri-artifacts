@@ -1,0 +1,9 @@
+# An example magma configuration
+REPEAT=1
+WORKERS=1
+TIMEOUT=5m
+POLL=5
+ISAN=1
+WORKDIR=/tmp/magma-data
+FUZZERS=(aflplusplus_dipri_ah)
+aflplusplus_dipri_ah_TARGETS=(libpng)
