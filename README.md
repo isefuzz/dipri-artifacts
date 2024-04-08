@@ -5,6 +5,7 @@ The structure of this repository is as follows:
 
 ```text
 .
+├── configs                 # Configuration files for FuzzBench and Magma.
 ├── Dockerfile              # Docker reproduction for manually built targets.
 ├── LICENSE.md              # The open-source license.
 ├── README.md               # This file.
@@ -44,7 +45,7 @@ For FuzzBench integration:
 git clone https://github.com/google/fuzzbench.git
 git -C ./ fuzzbench checkout 7c70037a73d2cc66627c6109d53d20b3594f85c9
 # Download and copy integration materials into the 'fuzzers/' folder.
-git clone https://github.com/QRXqrx/dipri-artifacts.git
+git clone https://github.com/isefuzz/dipri-artifacts.git
 cp -r ./dipri-artifacts/fuzzbench-integration/* ./fuzzbench/fuzzers/
 # Try building fuzzers with some targets after building FuzzBench.
 cd ./fuzzbench
@@ -56,9 +57,9 @@ For Magma integration:
 ```shell
 # Download Magma and checkout to the version we use.
 git clone https://github.com/HexHive/magma.git
-git -C ./fuzzbench checkout v1.2
+git -C ./magma checkout v1.2
 # Download and copy integration materials into the 'fuzzers/' folder.
-git clone https://github.com/QRXqrx/dipri-artifacts.git
+git clone https://github.com/isefuzz/dipri-artifacts.git
 cp -r ./dipri-artifacts/magma-integration/* ./magma/fuzzers/
 # Enter './tools/captain/' and try building fuzzers with Magma targets
 cd ./tools/captain

@@ -1,0 +1,36 @@
+###
+## Configuration parameters
+###
+
+# WORKDIR: path to directory where shared volumes will be created
+#WORKDIR=../../../magma-data
+
+# REPEAT: number of campaigns to run per program (per fuzzer)
+REPEAT=10
+
+# [WORKERS]: number of worker threads (default: CPU cores)
+WORKERS=20
+
+# [TIMEOUT]: time to run each campaign. This variable supports one-letter
+# suffixes to indicate duration (s: seconds, m: minutes, h: hours, d: days)
+# (default: 1m)
+TIMEOUT=23h
+
+# [POLL]: time (in seconds) between polls (default: 5)
+POLL=5
+
+# [ISAN]: if set, build the benchmark with ISAN/fatal canaries (default: unset)
+ISAN=1
+
+###
+## Campaigns to run
+###
+WORKDIR=/tmp/magma-data
+FUZZERS=(aflplusplus_dipri_ah aflplusplus_dipri_vh k_scheduler aflplusplus_z aflplusplus afl)
+aflplusplus_dipri_ah_TARGETS=(libpng libtiff libxml2 libsndfile lua sqlite3)
+aflplusplus_dipri_vh_TARGETS=(libpng libtiff libxml2 libsndfile lua sqlite3)
+k_scheduler_TARGETS=(libpng libtiff libxml2 libsndfile lua sqlite3)
+aflplusplus_z_TARGETS=(libpng libtiff libxml2 libsndfile lua sqlite3)
+aflplusplus_TARGETS=(libpng libtiff libxml2 libsndfile lua sqlite3)
+afl_TARGETS=(libpng libtiff libxml2 libsndfile lua sqlite3)
+
