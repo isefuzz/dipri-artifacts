@@ -104,50 +104,36 @@ build the image manually with the Dockerfile and scripts provided in this reposi
 To download the off-the-shell image, you can run:
 
 ```shell
-docker pull njuqrx/dipri:v1.1
-```
-
-To build the image manually, you can run:
-
-```shell
-# Download dipri artifacts .
-git clone https://github.com/isefuzz/dipri-artifacts.git
-cd ./dipri-artifacts
-# Download subjects.
-mkdir subjects
-bash ./scripts/subject/download-subjects.sh ./subjects
-# Download AFL ++- DiPri.
-git clone https://github.com/isefuzz/aflpp-dipri.git
-# Construct the docker image.
-docker build -t dipri .
+docker pull isefuzz/dipri-aflpp:v1.0  # Image for C/C++ targets.
+docker pull isefuzz/dipri-zest:v1.0   # Image for Java targets. 
 ```
 
 After get the image, you can run a container and reproduce experiments inside it.
-Say we have built an image manually and want to fuzz `readelf`, which is one of our experimental subjects, 
+Say we have built an image manually and want to fuzz `mjs`, which is one of our experimental subjects, 
 a possible sequence of instructions are as follows:
 
 ```shell
-# Suppose we have built the image manually.
-docker run -it --privileged dipri
+## Pull image and enter the docker container.
+docker pull isefuzz/dipri-aflpp:v1.0
+docker run -it --privileged isefuzz/dipri-aflpp:v1.0
 
-# ##############################
-# Inside the docker container  #
-# ##############################
-
-# Setup experimental environments .
-cd /root/dipri
+## Run experiment inside the docker container.
+# Prepare environment.
+cd /root/isefuzz/dipri
 source ./scripts/subject/setup/config/setup-dipri-AH.sh
-# Compiling targets. Please prepare folder for each fuzzer.
+# Instrument mjs and check whether instrumented mjs is existed.
 mkdir -p ./data/dipri-AH
-bash  ./scripts/subject/inst/binutils.sh \
-      ./subjects/binutil-2.40 \
-      ./data/dipri-AH
-# Run targets to generate raw fuzz data.
-bash ./scripts/subject/fuzz/readelf.sh ./data/dipri-AH 82800 1 10
-# Extract edge coverage.
-python3 ./scripts/analysis/tosem/extract_data.py -f ./data
-# Analyze raw data to get tables and figures .
-bash ./scripts/analysis/tosem/run_rw_cov_analysis.sh ./data
+bash ./scripts/subject/inst/mjs.sh ./subjects/mjs-2.20.0 ./data/dipri-AH/
+ls -al ./data/dipri-AH/mjs/mjs
+# Make some fuzz for 5 minutes (300s) and 3 repeatitions and check outs.
+bash ./scripts/subject/fuzz/mjs.sh ./data/dipri-AH 300 1 3
+ls -al ./data/dipri-AH/mjs/outs
+
+## Analyze raw data inside the docker container with the out-of-box raw data.
+cd /root/isefuzz/dipri
+bash ./scripts/analysis/tosem/run_rw_cov_analysis.sh ./dipri-aflpp-data
+# Check generated tables (.csv) and figures (fig_*).
+ls -al ./dipri-aflpp-data/_results/
 ```
 
 
