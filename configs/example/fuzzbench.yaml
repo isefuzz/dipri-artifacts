@@ -2,8 +2,8 @@
 trials: 1
 
 # The amount of time in seconds that each trial is run for.
-# 5minutes = 5 * 60 = 300
-max_total_time: 300
+# 20minutes = 20 * 60 = 1200
+max_total_time: 1200
 
 # The location of the docker registry.
 # See https://github.com/google/fuzzbench/issues/777
